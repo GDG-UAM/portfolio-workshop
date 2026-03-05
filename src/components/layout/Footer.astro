@@ -1,0 +1,86 @@
+---
+/**
+ * Footer — Site footer with social links and copyright.
+ */
+import SocialLinks from '../ui/SocialLinks.astro';
+import { getCollection } from 'astro:content';
+
+const profileEntries = await getCollection('profile');
+const profile = profileEntries[0]?.data;
+const year = new Date().getFullYear();
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner">
+    <div class="footer__left">
+      <p class="footer__copyright">
+        &copy; {year}
+        {profile?.name ?? 'Portfolio'}. All rights reserved.
+      </p>
+      <p class="footer__built">
+        Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
+      </p>
+    </div>
+
+    {
+      profile && (
+        <SocialLinks github={profile.github} linkedin={profile.linkedin} email={profile.email} />
+      )
+    }
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--space-lg);
+    margin-top: var(--space-xl);
+    transition: border-color var(--transition-base);
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+  }
+
+  @media (min-width: 640px) {
+    .footer__inner {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  .footer__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3xs);
+  }
+
+  @media (min-width: 640px) {
+    .footer__left {
+      align-items: flex-start;
+    }
+  }
+
+  .footer__copyright {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  .footer__built {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  .footer__built a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>

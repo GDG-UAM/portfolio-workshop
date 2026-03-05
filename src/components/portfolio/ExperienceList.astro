@@ -1,0 +1,46 @@
+---
+/**
+ * ExperienceList — Renders the full experience timeline.
+ *
+ * Usage:
+ *   <ExperienceList />           — shows all entries
+ *   <ExperienceList limit={3} /> — shows only the most recent 3
+ */
+import ExperienceItem from './ExperienceItem.astro';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit } = Astro.props;
+
+const allExperience = await getCollection('experience');
+// Sort by startDate descending (most recent first)
+const sorted = allExperience.sort(
+  (a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf(),
+);
+const items = limit ? sorted.slice(0, limit) : sorted;
+---
+
+<div class="experience-list" role="list">
+  {
+    items.map((entry) => (
+      <ExperienceItem
+        role={entry.data.role}
+        company={entry.data.company}
+        url={entry.data.url}
+        startDate={entry.data.startDate}
+        endDate={entry.data.endDate}
+        description={entry.data.description}
+        highlights={entry.data.highlights}
+      />
+    ))
+  }
+</div>
+
+<style>
+  .experience-list {
+    max-width: 44rem;
+  }
+</style>

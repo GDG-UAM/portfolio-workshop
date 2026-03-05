@@ -1,0 +1,106 @@
+---
+/**
+ * Homepage — The main portfolio page.
+ *
+ * Sections: Hero → About → Experience → Education → Volunteering → Projects → Posts
+ *
+ * All content comes from Content Collections. To edit what appears here,
+ * modify the YAML/Markdown files in src/data/ — no need to touch this file!
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/layout/Section.astro';
+import HeroSection from '../components/portfolio/HeroSection.astro';
+import AboutSection from '../components/portfolio/AboutSection.astro';
+import ExperienceList from '../components/portfolio/ExperienceList.astro';
+import EducationList from '../components/portfolio/EducationList.astro';
+import VolunteeringList from '../components/portfolio/VolunteeringList.astro';
+import ProjectsGrid from '../components/portfolio/ProjectsGrid.astro';
+import PostCard from '../components/portfolio/PostCard.astro';
+import Button from '../components/ui/Button.astro';
+import { getCollection } from 'astro:content';
+
+// Get latest 3 posts (non-draft, sorted by date)
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const latestPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  {/* ─── Hero ─── */}
+  <HeroSection />
+
+  {/* ─── About ─── */}
+  <Section id="about" title="About" subtitle="A little bit about me">
+    <AboutSection />
+  </Section>
+
+  {/* ─── Experience ─── */}
+  <Section id="experience" title="Experience" subtitle="Where I've worked">
+    <ExperienceList />
+  </Section>
+
+  {/* ─── Education ─── */}
+  <Section id="education" title="Education" subtitle="My academic background">
+    <EducationList />
+  </Section>
+
+  {/* ─── Volunteering ─── */}
+  <Section id="volunteering" title="Volunteering" subtitle="Giving back to the community">
+    <VolunteeringList />
+  </Section>
+
+  {/* ─── Projects ─── */}
+  <Section id="projects" title="Projects" subtitle="Things I've built">
+    <ProjectsGrid featured />
+    <div class="section-cta">
+      <Button href="/projects" variant="outline" size="sm">View all projects →</Button>
+    </div>
+  </Section>
+
+  {/* ─── Latest Posts ─── */}
+  <Section id="posts" title="Latest Posts" subtitle="Thoughts, learnings, and ideas">
+    <div class="posts-grid">
+      {
+        latestPosts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            tags={post.data.tags}
+            slug={post.id}
+          />
+        ))
+      }
+    </div>
+    <div class="section-cta">
+      <Button href="/posts" variant="outline" size="sm">View all posts →</Button>
+    </div>
+  </Section>
+</BaseLayout>
+
+<style>
+  .posts-grid {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .posts-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .section-cta {
+    margin-top: var(--space-lg);
+    display: flex;
+    justify-content: center;
+  }
+</style>

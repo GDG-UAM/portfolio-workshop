@@ -1,0 +1,59 @@
+---
+/**
+ * Posts listing page — Shows all blog posts.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/layout/Section.astro';
+import PostCard from '../../components/portfolio/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="Posts" description="Thoughts, learnings, and ideas about software development.">
+  <Section title="Posts" subtitle="Thoughts, learnings, and ideas">
+    <div class="posts-grid">
+      {
+        sortedPosts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            tags={post.data.tags}
+            slug={post.id}
+          />
+        ))
+      }
+    </div>
+
+    {sortedPosts.length === 0 && <p class="empty-state">No posts yet. Check back soon!</p>}
+  </Section>
+</BaseLayout>
+
+<style>
+  .posts-grid {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .posts-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .empty-state {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+    padding: var(--space-2xl);
+  }
+</style>

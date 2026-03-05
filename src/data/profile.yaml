@@ -1,0 +1,23 @@
+- id: elena
+  name: Elena Navarro
+  role: Software Engineer & Creative Technologist
+  tagline: Building clean, accessible digital experiences with curiosity and craft.
+  location: Madrid, Spain
+  email: elena@example.dev
+  github: https://github.com/elenanavarro
+  linkedin: https://linkedin.com/in/elenanavarro
+  avatar: /avatar-placeholder.svg
+  bio:
+    - "I'm a software engineer with a passion for the intersection of design and technology. I love crafting interfaces that feel intuitive and tools that make developers' lives easier."
+    - "Currently focused on frontend architecture, design systems, and creative coding. When I'm not writing code, you'll find me mentoring at local tech communities, experimenting with generative art, or hiking in the Sierra de Guadarrama."
+  skills:
+    - TypeScript
+    - React
+    - Astro
+    - Node.js
+    - Python
+    - Figma
+    - Accessibility
+    - Design Systems
+    - Open Source
+    - Technical Writing

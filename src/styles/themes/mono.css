@@ -1,0 +1,432 @@
+/*
+ * ═══════════════════════════════════════════════════════════
+ *  THEME: Mono Tech
+ * ═══════════════════════════════════════════════════════════
+ *
+ *  Terminal/hacker aesthetic. Pure black, phosphor-green accent,
+ *  monospace everywhere, sharp corners, dashed borders, ASCII
+ *  decorators, scanline effects. Think: a coder's CLI portfolio.
+ */
+
+[data-theme='mono'] {
+  /* ─── Backgrounds ─── */
+  --color-bg: #050505;
+  --color-bg-alt: #0d0d0d;
+
+  /* ─── Text ─── */
+  --color-text: #a0a0a0;
+  --color-text-muted: #555555;
+  --color-heading: #e0e0e0;
+
+  /* ─── Surfaces ─── */
+  --color-card: #0a0a0a;
+  --color-card-hover: #111111;
+  --color-border: #1e1e1e;
+  --color-nav: rgba(5, 5, 5, 0.95);
+
+  /* ─── Accent ─── */
+  --color-accent: #00d68f;
+  --color-accent-hover: #33ffb1;
+  --color-accent-text: #050505;
+  --color-accent-subtle: rgba(0, 214, 143, 0.06);
+
+  /* ─── Shadows ─── */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+
+  /* ─── Radii — everything sharp ─── */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-full: 0;
+
+  /* ─── Theme-specific ─── */
+  --hero-gradient: none;
+  --card-border-width: 1px;
+  --timeline-color: #1e1e1e;
+  --badge-bg: rgba(0, 214, 143, 0.06);
+  --badge-text: #00d68f;
+  --tag-bg: transparent;
+  --tag-text: #00d68f;
+  --nav-blur: none;
+}
+
+/* ───────────────────────────────────────────────────────────
+ *  Mono — Terminal aesthetic: monospace, sharp, dashed
+ * ─────────────────────────────────────────────────────────── */
+
+/* All text is monospace */
+[data-theme='mono'] body {
+  font-family: var(--font-mono);
+}
+
+[data-theme='mono'] h1,
+[data-theme='mono'] h2,
+[data-theme='mono'] h3,
+[data-theme='mono'] h4 {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* ─── Mono Navbar: top border only, terminal prompt logo ─── */
+
+[data-theme='mono'] .navbar {
+  border-bottom: 1px dashed #1e1e1e;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: var(--color-nav);
+}
+
+[data-theme='mono'] .navbar__logo {
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+[data-theme='mono'] .navbar__logo::before {
+  content: '> ';
+  color: var(--color-accent);
+}
+
+[data-theme='mono'] .navbar__link {
+  border-radius: 0;
+  font-family: var(--font-mono);
+  text-transform: lowercase;
+}
+
+[data-theme='mono'] .navbar__link:hover {
+  background: rgba(0, 214, 143, 0.06);
+  color: var(--color-accent);
+}
+
+[data-theme='mono'] .navbar__link--active {
+  color: var(--color-accent);
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ─── Mono Hero: left-aligned, typewriter style ─── */
+
+[data-theme='mono'] .hero {
+  padding-block: 4rem 3rem;
+  border-bottom: 1px dashed #1e1e1e;
+}
+
+[data-theme='mono'] .hero__avatar {
+  border-radius: 0;
+  border: 1px solid #1e1e1e;
+  box-shadow: none;
+  width: 4rem;
+  height: 4rem;
+}
+
+@media (min-width: 768px) {
+  [data-theme='mono'] .hero__avatar {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
+[data-theme='mono'] .hero__name {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+[data-theme='mono'] .hero__name::before {
+  content: '$ ';
+  color: var(--color-accent);
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  [data-theme='mono'] .hero__name {
+    font-size: 2.75rem;
+  }
+}
+
+[data-theme='mono'] .hero__role {
+  font-weight: 400;
+  text-transform: none;
+  color: var(--color-accent);
+  opacity: 0.8;
+}
+
+[data-theme='mono'] .hero__role::before {
+  content: '// ';
+  opacity: 0.4;
+}
+
+[data-theme='mono'] .hero__tagline {
+  color: var(--color-text-muted);
+  font-style: normal;
+}
+
+[data-theme='mono'] .hero__tagline::before {
+  content: '/* ';
+  color: var(--color-text-muted);
+  opacity: 0.4;
+}
+
+[data-theme='mono'] .hero__tagline::after {
+  content: ' */';
+  color: var(--color-text-muted);
+  opacity: 0.4;
+}
+
+/* ─── Mono Cards: dashed border, no shadows, no radius ─── */
+
+[data-theme='mono'] .card {
+  border: 1px dashed #1e1e1e;
+  border-radius: 0;
+  background: var(--color-card);
+  box-shadow: none;
+}
+
+[data-theme='mono'] .card--hoverable:hover {
+  border-color: var(--color-accent);
+  border-style: solid;
+  box-shadow: none;
+  transform: none;
+  background: var(--color-card-hover);
+}
+
+/* ─── Mono Section titles: terminal prompt prefix ─── */
+
+[data-theme='mono'] .section__title {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+}
+
+[data-theme='mono'] .section__title::before {
+  content: '# ';
+  opacity: 0.4;
+}
+
+/* ─── Mono Timeline: dashed line, square dots ─── */
+
+[data-theme='mono'] .exp-item::before {
+  border-left: 1px dashed #1e1e1e;
+  background: none;
+  width: 0;
+}
+
+[data-theme='mono'] .exp-item__dot {
+  border-radius: 0;
+  width: 9px;
+  height: 9px;
+  background: var(--color-accent);
+  border: none;
+  box-shadow: none;
+  left: 1px;
+}
+
+[data-theme='mono'] .exp-item__role {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 1rem;
+}
+
+[data-theme='mono'] .exp-item__date {
+  font-family: var(--font-mono);
+}
+
+[data-theme='mono'] .exp-item__date::before {
+  content: '[';
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+[data-theme='mono'] .exp-item__date::after {
+  content: ']';
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+/* ─── Mono Tags: bracket style ─── */
+
+[data-theme='mono'] .tag {
+  background: transparent;
+  border: 1px solid #1e1e1e;
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: lowercase;
+}
+
+[data-theme='mono'] .tag::before {
+  content: '<';
+  opacity: 0.4;
+  margin-right: 0.1em;
+}
+
+[data-theme='mono'] .tag::after {
+  content: '/>';
+  opacity: 0.4;
+  margin-left: 0.1em;
+}
+
+/* ─── Mono Badges: outlined, sharp ─── */
+
+[data-theme='mono'] .badge {
+  border-radius: 0;
+  font-family: var(--font-mono);
+  text-transform: lowercase;
+  font-size: 0.7rem;
+}
+
+[data-theme='mono'] .badge--default {
+  background: transparent;
+  border: 1px solid rgba(0, 214, 143, 0.2);
+}
+
+/* ─── Mono Buttons: sharp, outlined ─── */
+
+[data-theme='mono'] .btn {
+  border-radius: 0;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+}
+
+[data-theme='mono'] .btn:hover {
+  transform: none;
+}
+
+[data-theme='mono'] .btn--primary {
+  box-shadow: none;
+}
+
+[data-theme='mono'] .btn--primary:hover {
+  box-shadow: 0 0 12px rgba(0, 214, 143, 0.3);
+}
+
+[data-theme='mono'] .btn--outline {
+  box-shadow: inset 0 0 0 1px var(--color-accent);
+}
+
+[data-theme='mono'] .btn--outline:hover {
+  background: rgba(0, 214, 143, 0.06);
+}
+
+/* ─── Mono Footer: dashed top, ASCII signature ─── */
+
+[data-theme='mono'] .footer {
+  border-top: 1px dashed #1e1e1e;
+}
+
+[data-theme='mono'] .footer__built a {
+  color: var(--color-accent);
+}
+
+/* ─── Mono Prose: code-heavy ─── */
+
+[data-theme='mono'] .prose {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+[data-theme='mono'] .prose h2 {
+  border-bottom: 1px dashed #1e1e1e;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 1.25rem;
+}
+
+[data-theme='mono'] .prose h2::before {
+  content: '## ';
+  color: var(--color-accent);
+  opacity: 0.5;
+}
+
+[data-theme='mono'] .prose code {
+  background: rgba(0, 214, 143, 0.06);
+  border: 1px solid #1e1e1e;
+  border-radius: 0;
+  color: var(--color-accent);
+}
+
+[data-theme='mono'] .prose blockquote {
+  border-left: 2px solid var(--color-accent);
+  background: rgba(0, 214, 143, 0.02);
+  padding: var(--space-sm) var(--space-md);
+  font-style: normal;
+}
+
+[data-theme='mono'] .prose blockquote::before {
+  content: '> ';
+  color: var(--color-accent);
+  opacity: 0.4;
+}
+
+/* ─── Mono ThemeSwitcher: sharp, outlined ─── */
+
+[data-theme='mono'] .theme-switcher {
+  border-radius: 0;
+  background: transparent;
+  border: 1px solid #1e1e1e;
+}
+
+[data-theme='mono'] .theme-switcher__btn {
+  border-radius: 0;
+}
+
+[data-theme='mono'] .theme-switcher__btn[aria-checked='true'] {
+  background: rgba(0, 214, 143, 0.06);
+  color: var(--color-accent);
+  box-shadow: none;
+}
+
+/* ─── Mono Project titles: path-style ─── */
+
+[data-theme='mono'] .project-card__title::before {
+  content: './';
+  color: var(--color-accent);
+  opacity: 0.5;
+  font-weight: 400;
+}
+
+/* ─── Mono Post card: date as timestamp ─── */
+
+[data-theme='mono'] .post-card__date::before {
+  content: '📅 ';
+  font-size: 0.65rem;
+}
+
+[data-theme='mono'] .post-card__read-more {
+  font-family: var(--font-mono);
+  text-transform: lowercase;
+}
+
+[data-theme='mono'] .post-card__read-more::before {
+  content: '→ ';
+}
+
+/* ─── Mono: scanline overlay for atmosphere ─── */
+
+[data-theme='mono'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}

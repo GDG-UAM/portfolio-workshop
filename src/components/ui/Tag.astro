@@ -1,0 +1,31 @@
+---
+/**
+ * Tag — Inline label for categories or topics (smaller than Badge).
+ *
+ * Usage:
+ *   <Tag>Rust</Tag>
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<span class:list={['tag', className]}>
+  <slot />
+</span>
+
+<style>
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2em 0.55em;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+</style>

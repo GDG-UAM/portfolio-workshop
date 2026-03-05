@@ -1,0 +1,34 @@
+---
+/**
+ * VolunteeringList — Renders the full volunteering timeline.
+ */
+import VolunteeringItem from './VolunteeringItem.astro';
+import { getCollection } from 'astro:content';
+
+const allVolunteering = await getCollection('volunteering');
+const sorted = allVolunteering.sort(
+  (a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf(),
+);
+---
+
+<div class="volunteering-list" role="list">
+  {
+    sorted.map((entry) => (
+      <VolunteeringItem
+        organization={entry.data.organization}
+        role={entry.data.role}
+        url={entry.data.url}
+        startDate={entry.data.startDate}
+        endDate={entry.data.endDate}
+        description={entry.data.description}
+        contributions={entry.data.contributions}
+      />
+    ))
+  }
+</div>
+
+<style>
+  .volunteering-list {
+    max-width: 44rem;
+  }
+</style>

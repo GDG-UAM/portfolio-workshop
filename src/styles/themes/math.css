@@ -1,0 +1,468 @@
+/*
+ * ═══════════════════════════════════════════════════════════
+ *  THEME: Math
+ * ═══════════════════════════════════════════════════════════
+ *
+ *  Academic mathematics / LaTeX paper aesthetic. Cream parchment
+ *  background, Computer Modern-style serif, theorem boxes,
+ *  ruled sections, marginal annotations, proof-style layouts.
+ *  Think: LaTeX document + chalkboard + academic journal.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+[data-theme='math'] {
+  /* ─── Backgrounds — Parchment / Paper ─── */
+  --color-bg: #fdf6ec;
+  --color-bg-alt: #f5ead6;
+
+  /* ─── Text — Ink ─── */
+  --color-text: #3c3226;
+  --color-text-muted: #7a6e5e;
+  --color-heading: #1a150f;
+
+  /* ─── Surfaces ─── */
+  --color-card: #faf3e5;
+  --color-card-hover: #f8f0de;
+  --color-border: #d4c5a9;
+  --color-nav: rgba(253, 246, 236, 0.95);
+
+  /* ─── Accent — Academic Blue (theorem) ─── */
+  --color-accent: #1a56db;
+  --color-accent-hover: #1e40af;
+  --color-accent-text: #ffffff;
+  --color-accent-subtle: rgba(26, 86, 219, 0.05);
+
+  /* ─── Shadows — Minimal like paper ─── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  /* ─── Radii — Almost none (paper feel) ─── */
+  --radius-sm: 1px;
+  --radius-md: 2px;
+  --radius-lg: 3px;
+  --radius-full: 2px;
+
+  /* ─── Theme-specific ─── */
+  --hero-gradient: none;
+  --card-border-width: 1px;
+  --timeline-color: #d4c5a9;
+  --badge-bg: rgba(26, 86, 219, 0.06);
+  --badge-text: #1a56db;
+  --tag-bg: #f5ead6;
+  --tag-text: #3c3226;
+  --nav-blur: none;
+
+  /* ─── Math-specific palette ─── */
+  --math-blue: #1a56db;
+  --math-red: #b91c1c;
+  --math-green: #166534;
+  --math-purple: #7e22ce;
+}
+
+/* ───────────────────────────────────────────────────────────
+ *  Math — Academic LaTeX / Journal Paper
+ * ─────────────────────────────────────────────────────────── */
+
+[data-theme='math'] body {
+  font-family: 'Crimson Pro', 'EB Garamond', 'Georgia', 'Times New Roman', serif;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+[data-theme='math'] h1,
+[data-theme='math'] h2,
+[data-theme='math'] h3,
+[data-theme='math'] h4 {
+  font-family: 'EB Garamond', 'Crimson Pro', 'Georgia', serif;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+/* ─── Navbar: ruled header like a paper title ─── */
+
+[data-theme='math'] .navbar {
+  border-bottom: 2px solid var(--color-heading);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: var(--color-nav);
+  box-shadow: none;
+}
+
+[data-theme='math'] .navbar__logo {
+  font-family: 'EB Garamond', serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--color-heading);
+}
+
+[data-theme='math'] .navbar__link {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  border-radius: 0;
+  color: var(--color-text-muted);
+}
+
+[data-theme='math'] .navbar__link:hover {
+  color: var(--color-heading);
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+[data-theme='math'] .navbar__link--active {
+  color: var(--color-heading);
+  background: transparent;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ─── Hero: paper title block ─── */
+
+[data-theme='math'] .hero {
+  padding-block: 4rem 3rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme='math'] .hero__content {
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+[data-theme='math'] .hero__text {
+  align-items: center;
+}
+
+[data-theme='math'] .hero__avatar {
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  box-shadow: none;
+  width: 5rem;
+  height: 5rem;
+}
+
+[data-theme='math'] .hero__name {
+  font-family: 'EB Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+  [data-theme='math'] .hero__name {
+    font-size: 3rem;
+  }
+}
+
+[data-theme='math'] .hero__role {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+/* Author affiliation style */
+[data-theme='math'] .hero__tagline {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+[data-theme='math'] .hero__actions {
+  justify-content: center;
+}
+
+/* ─── Cards: theorem box / definition box style ─── */
+
+[data-theme='math'] .card {
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--math-blue);
+  border-radius: 0;
+  background: var(--color-card);
+  box-shadow: none;
+  position: relative;
+}
+
+[data-theme='math'] .card--hoverable:hover {
+  border-left-color: var(--math-purple);
+  background: var(--color-card-hover);
+  box-shadow: var(--shadow-sm);
+  transform: none;
+}
+
+/* ─── Section titles: numbered theorem header style ─── */
+
+[data-theme='math'] .section {
+  counter-increment: section-counter;
+}
+
+[data-theme='math'] .section__title {
+  font-family: 'EB Garamond', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--color-heading);
+  position: relative;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Section number */
+[data-theme='math'] .section__title::before {
+  content: '§' counter(section-counter) '. ';
+  color: var(--math-blue);
+  font-weight: 400;
+}
+
+/* ─── Timeline: proof steps ─── */
+
+[data-theme='math'] .exp-item__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--math-blue);
+  border: 2px solid var(--color-bg);
+  box-shadow: 0 0 0 1px var(--math-blue);
+}
+
+[data-theme='math'] .exp-item::before {
+  width: 1px;
+  background: var(--color-border);
+}
+
+[data-theme='math'] .exp-item__role {
+  font-family: 'EB Garamond', serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+[data-theme='math'] .exp-item__company a {
+  color: var(--math-blue);
+}
+
+[data-theme='math'] .exp-item__date {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* ─── Tags: category labels ─── */
+
+[data-theme='math'] .tag {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  font-style: italic;
+  border: none;
+  border-bottom: 1px dashed var(--color-border);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text);
+  padding: 0.1em 0;
+}
+
+/* Colored categories */
+[data-theme='math'] .tag:nth-child(4n+1) { color: var(--math-blue); border-color: var(--math-blue); }
+[data-theme='math'] .tag:nth-child(4n+2) { color: var(--math-red); border-color: var(--math-red); }
+[data-theme='math'] .tag:nth-child(4n+3) { color: var(--math-green); border-color: var(--math-green); }
+[data-theme='math'] .tag:nth-child(4n+4) { color: var(--math-purple); border-color: var(--math-purple); }
+
+/* ─── Badges: MSC classification style ─── */
+
+[data-theme='math'] .badge {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  border-radius: 0;
+}
+
+[data-theme='math'] .badge--default {
+  background: rgba(26, 86, 219, 0.05);
+  border: 1px solid rgba(26, 86, 219, 0.15);
+  color: var(--math-blue);
+}
+
+/* ─── Buttons: academic, restrained ─── */
+
+[data-theme='math'] .btn {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 1px;
+  letter-spacing: 0;
+}
+
+[data-theme='math'] .btn:hover {
+  transform: none;
+}
+
+[data-theme='math'] .btn--primary {
+  background: var(--math-blue);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+[data-theme='math'] .btn--primary:hover {
+  background: var(--color-accent-hover);
+}
+
+[data-theme='math'] .btn--outline {
+  box-shadow: none;
+  border: 1px solid var(--math-blue);
+  color: var(--math-blue);
+}
+
+[data-theme='math'] .btn--outline:hover {
+  background: rgba(26, 86, 219, 0.04);
+}
+
+/* ─── Footer: journal footer ─── */
+
+[data-theme='math'] .footer {
+  border-top: 2px solid var(--color-heading);
+}
+
+[data-theme='math'] .footer__copyright {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+}
+
+/* ─── Prose: LaTeX article body ─── */
+
+[data-theme='math'] .prose {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  max-width: 42rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+[data-theme='math'] .prose h2 {
+  font-family: 'EB Garamond', serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+
+[data-theme='math'] .prose h3 {
+  font-family: 'EB Garamond', serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.15rem;
+}
+
+/* Definition / Theorem box styling for blockquotes */
+[data-theme='math'] .prose blockquote {
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--math-blue);
+  background: rgba(26, 86, 219, 0.02);
+  padding: var(--space-sm) var(--space-md);
+  font-style: italic;
+  position: relative;
+  margin-block: var(--space-md);
+}
+
+[data-theme='math'] .prose blockquote::before {
+  content: 'Remark. ';
+  font-weight: 700;
+  font-style: italic;
+  color: var(--math-blue);
+}
+
+[data-theme='math'] .prose code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82em;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 1px;
+  color: var(--math-red);
+}
+
+[data-theme='math'] .prose ul {
+  list-style-type: '— ';
+}
+
+[data-theme='math'] .prose strong {
+  font-weight: 700;
+  color: var(--color-heading);
+}
+
+[data-theme='math'] .prose em {
+  font-style: italic;
+  color: var(--math-blue);
+}
+
+[data-theme='math'] .prose a {
+  color: var(--math-blue);
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+
+[data-theme='math'] .prose hr {
+  border: none;
+  text-align: center;
+  margin-block: var(--space-xl);
+}
+
+[data-theme='math'] .prose hr::after {
+  content: '∗ ∗ ∗';
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.5em;
+}
+
+/* ─── Post card ─── */
+
+[data-theme='math'] .post-card__title {
+  font-family: 'EB Garamond', serif;
+}
+
+[data-theme='math'] .post-card__read-more {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+[data-theme='math'] .post-card__date {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+}
+
+/* ─── Project card: paper-like ─── */
+
+[data-theme='math'] .project-card__title {
+  font-family: 'EB Garamond', serif;
+  font-weight: 700;
+}
+
+/* ─── Subtle paper texture ─── */
+
+[data-theme='math'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.3;
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+}
+
+/* ─── QED tombstone on last experience item ─── */
+
+[data-theme='math'] .exp-item:last-child::after {
+  content: '∎';
+  display: block;
+  text-align: right;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  margin-top: var(--space-2xs);
+}

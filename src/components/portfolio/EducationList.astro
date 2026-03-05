@@ -1,0 +1,32 @@
+---
+/**
+ * EducationList — Renders the full education timeline.
+ */
+import EducationItem from './EducationItem.astro';
+import { getCollection } from 'astro:content';
+
+const allEducation = await getCollection('education');
+const sorted = allEducation.sort((a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf());
+---
+
+<div class="education-list" role="list">
+  {
+    sorted.map((entry) => (
+      <EducationItem
+        institution={entry.data.institution}
+        degree={entry.data.degree}
+        field={entry.data.field}
+        startDate={entry.data.startDate}
+        endDate={entry.data.endDate}
+        description={entry.data.description}
+        details={entry.data.details}
+      />
+    ))
+  }
+</div>
+
+<style>
+  .education-list {
+    max-width: 44rem;
+  }
+</style>

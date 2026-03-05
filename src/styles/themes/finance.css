@@ -1,0 +1,391 @@
+/*
+ * ═══════════════════════════════════════════════════════════
+ *  THEME: Finance
+ * ═══════════════════════════════════════════════════════════
+ *
+ *  Institutional asset-management aesthetic. Deep navy/charcoal,
+ *  gold accents, serif headings, dense data layouts, pin-stripe
+ *  textures. Think: BlackRock.com + Bloomberg Terminal + Annual Report.
+ */
+
+[data-theme='finance'] {
+  /* ─── Backgrounds — Corporate Navy ─── */
+  --color-bg: #0c1220;
+  --color-bg-alt: #111827;
+
+  /* ─── Text ─── */
+  --color-text: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-heading: #f1f5f9;
+
+  /* ─── Surfaces ─── */
+  --color-card: rgba(17, 24, 39, 0.8);
+  --color-card-hover: rgba(30, 41, 59, 0.8);
+  --color-border: rgba(148, 163, 184, 0.1);
+  --color-nav: rgba(12, 18, 32, 0.92);
+
+  /* ─── Accent — Investment Gold ─── */
+  --color-accent: #d4a843;
+  --color-accent-hover: #e5be5a;
+  --color-accent-text: #0c1220;
+  --color-accent-subtle: rgba(212, 168, 67, 0.06);
+
+  /* ─── Shadows ─── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+  /* ─── Radii — Sharp, professional ─── */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-full: 3px;
+
+  /* ─── Theme-specific ─── */
+  --hero-gradient: linear-gradient(
+    170deg,
+    rgba(212, 168, 67, 0.04) 0%,
+    transparent 40%
+  );
+  --card-border-width: 1px;
+  --timeline-color: rgba(212, 168, 67, 0.15);
+  --badge-bg: rgba(212, 168, 67, 0.08);
+  --badge-text: #d4a843;
+  --tag-bg: rgba(148, 163, 184, 0.08);
+  --tag-text: #94a3b8;
+  --nav-blur: saturate(150%) blur(14px);
+}
+
+/* ───────────────────────────────────────────────────────────
+ *  Finance — BlackRock / Institutional Asset Management
+ * ─────────────────────────────────────────────────────────── */
+
+[data-theme='finance'] body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0;
+}
+
+[data-theme='finance'] h1,
+[data-theme='finance'] h2,
+[data-theme='finance'] h3,
+[data-theme='finance'] h4 {
+  font-family: 'Georgia', 'Times New Roman', 'Garamond', serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* ─── Navbar: dark, gold accent, corporate ─── */
+
+[data-theme='finance'] .navbar {
+  border-bottom: 1px solid rgba(212, 168, 67, 0.1);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='finance'] .navbar__logo {
+  font-family: 'Georgia', serif;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--color-accent);
+}
+
+[data-theme='finance'] .navbar__link {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+  color: var(--color-text-muted);
+}
+
+[data-theme='finance'] .navbar__link:hover {
+  color: var(--color-heading);
+  background: rgba(148, 163, 184, 0.06);
+}
+
+[data-theme='finance'] .navbar__link--active {
+  color: var(--color-accent);
+  background: rgba(212, 168, 67, 0.06);
+  border-bottom: 1px solid var(--color-accent);
+}
+
+/* ─── Hero: stately, restrained, gold rule ─── */
+
+[data-theme='finance'] .hero {
+  padding-block: 5rem 3rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme='finance'] .hero__avatar {
+  border-radius: 3px;
+  border: 1px solid rgba(212, 168, 67, 0.2);
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme='finance'] .hero__name {
+  font-family: 'Georgia', serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  [data-theme='finance'] .hero__name {
+    font-size: 3.5rem;
+  }
+}
+
+/* Gold rule under name */
+[data-theme='finance'] .hero__name::after {
+  content: '';
+  display: block;
+  width: 4rem;
+  height: 1px;
+  background: var(--color-accent);
+  margin-top: 0.75rem;
+}
+
+[data-theme='finance'] .hero__role {
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+}
+
+[data-theme='finance'] .hero__tagline {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.65;
+}
+
+/* ─── Cards: bordered, sharp, institutional ─── */
+
+[data-theme='finance'] .card {
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  background: var(--color-card);
+  box-shadow: none;
+  position: relative;
+}
+
+/* Gold top accent line */
+[data-theme='finance'] .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+[data-theme='finance'] .card--hoverable:hover::before {
+  opacity: 1;
+}
+
+[data-theme='finance'] .card--hoverable:hover {
+  border-color: rgba(212, 168, 67, 0.2);
+  background: var(--color-card-hover);
+  box-shadow: none;
+  transform: none;
+}
+
+/* ─── Section titles: all-caps, tracked, thin rule ─── */
+
+[data-theme='finance'] .section__title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-accent);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.75rem;
+}
+
+[data-theme='finance'] .section__title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--color-accent);
+}
+
+/* ─── Timeline: precise, structured ─── */
+
+[data-theme='finance'] .exp-item__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--color-accent);
+  border: none;
+  box-shadow: none;
+  transform: rotate(45deg);
+  left: 2px;
+}
+
+[data-theme='finance'] .exp-item::before {
+  width: 1px;
+  background: rgba(212, 168, 67, 0.12);
+}
+
+[data-theme='finance'] .exp-item__role {
+  font-family: 'Georgia', serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+[data-theme='finance'] .exp-item__date {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+[data-theme='finance'] .exp-item__company a {
+  color: var(--color-accent);
+}
+
+/* ─── Tags: muted, corporate ─── */
+
+[data-theme='finance'] .tag {
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  background: transparent;
+}
+
+/* ─── Badges: gold-tinted ─── */
+
+[data-theme='finance'] .badge--default {
+  border: 1px solid rgba(212, 168, 67, 0.15);
+  background: rgba(212, 168, 67, 0.06);
+  color: var(--color-accent);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-radius: 2px;
+}
+
+/* ─── Buttons: serious, restrained ─── */
+
+[data-theme='finance'] .btn {
+  border-radius: 2px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+[data-theme='finance'] .btn:hover {
+  transform: none;
+}
+
+[data-theme='finance'] .btn--primary {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  box-shadow: none;
+}
+
+[data-theme='finance'] .btn--primary:hover {
+  background: var(--color-accent-hover);
+  box-shadow: none;
+}
+
+[data-theme='finance'] .btn--outline {
+  box-shadow: inset 0 0 0 1px rgba(212, 168, 67, 0.3);
+  color: var(--color-accent);
+}
+
+[data-theme='finance'] .btn--outline:hover {
+  box-shadow: inset 0 0 0 1px var(--color-accent);
+  background: rgba(212, 168, 67, 0.06);
+}
+
+/* ─── Footer: gold divider ─── */
+
+[data-theme='finance'] .footer {
+  border-top: 1px solid var(--color-border);
+  position: relative;
+}
+
+[data-theme='finance'] .footer::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 8rem;
+  height: 1px;
+  background: var(--color-accent);
+}
+
+/* ─── Prose: editorial, dense ─── */
+
+[data-theme='finance'] .prose {
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+[data-theme='finance'] .prose h2 {
+  font-family: 'Georgia', serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme='finance'] .prose code {
+  background: rgba(148, 163, 184, 0.08);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  color: var(--color-accent);
+}
+
+[data-theme='finance'] .prose blockquote {
+  border-left: 2px solid var(--color-accent);
+  background: rgba(212, 168, 67, 0.03);
+  padding: var(--space-sm) var(--space-md);
+  font-style: italic;
+}
+
+[data-theme='finance'] .prose strong {
+  color: var(--color-heading);
+}
+
+/* ─── Post card: professional ─── */
+
+[data-theme='finance'] .post-card__read-more {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+/* ─── Pin-stripe texture (very subtle) ─── */
+
+[data-theme='finance'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 3px,
+    rgba(148, 163, 184, 0.012) 3px,
+    rgba(148, 163, 184, 0.012) 4px
+  );
+}

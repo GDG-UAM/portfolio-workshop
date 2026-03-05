@@ -1,0 +1,17 @@
+---
+/**
+ * Projects page — Shows all projects in a grid.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/layout/Section.astro';
+import ProjectsGrid from '../components/portfolio/ProjectsGrid.astro';
+---
+
+<BaseLayout
+  title="Projects"
+  description="Things I've designed and built — from web apps to CLI tools."
+>
+  <Section title="Projects" subtitle="Things I've built">
+    <ProjectsGrid />
+  </Section>
+</BaseLayout>

@@ -1,0 +1,54 @@
+---
+/**
+ * ProjectsGrid — Grid of project cards.
+ *
+ * Usage:
+ *   <ProjectsGrid />                — all projects
+ *   <ProjectsGrid featured />       — only featured=true projects
+ */
+import ProjectCard from './ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  featured?: boolean;
+}
+
+const { featured = false } = Astro.props;
+
+const allProjects = await getCollection('projects');
+const items = featured ? allProjects.filter((p) => p.data.featured) : allProjects;
+---
+
+<div class="projects-grid">
+  {
+    items.map((project) => (
+      <ProjectCard
+        title={project.data.title}
+        description={project.data.description}
+        tags={project.data.tags}
+        url={project.data.url}
+        repo={project.data.repo}
+      />
+    ))
+  }
+</div>
+
+<style>
+  .projects-grid {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,32 @@
+{
+  "name": "astro-portfolio-template",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A beautiful, themeable portfolio template built with Astro for students and developers.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "prettier --check \"src/**/*.{astro,ts,css,md,mdx,yaml}\"",
+    "format": "prettier --write \"src/**/*.{astro,ts,css,md,mdx,yaml}\"",
+    "typecheck": "astro check",
+    "test": "vitest run",
+    "test:e2e": "npx playwright test",
+    "test:all": "npm run test && npm run test:e2e"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/sitemap": "^3.7.0",
+    "astro": "^5.17.1",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18",
+    "yaml": "^2.8.2"
+  }
+}

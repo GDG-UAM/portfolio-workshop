@@ -1,0 +1,76 @@
+---
+/**
+ * Section — Reusable wrapper for each portfolio section.
+ *
+ * Provides consistent spacing, optional title, subtitle, and an HTML id
+ * for anchor linking from the Navbar.
+ *
+ * Usage:
+ *   <Section id="experience" title="Experience" subtitle="Where I've worked">
+ *     <ExperienceList />
+ *   </Section>
+ */
+interface Props {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  class?: string;
+}
+
+const { id, title, subtitle, class: className } = Astro.props;
+---
+
+<section id={id} class:list={['section', className]}>
+  <div class="container">
+    {
+      (title || subtitle) && (
+        <header class="section__header">
+          {title && <h2 class="section__title">{title}</h2>}
+          {subtitle && <p class="section__subtitle">{subtitle}</p>}
+        </header>
+      )
+    }
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section {
+    padding-block: var(--space-2xl);
+  }
+
+  @media (min-width: 768px) {
+    .section {
+      padding-block: var(--space-3xl);
+    }
+  }
+
+  .container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+  }
+
+  .section__header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .section__title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-3xs);
+  }
+
+  @media (min-width: 768px) {
+    .section__title {
+      font-size: var(--font-size-3xl);
+    }
+  }
+
+  .section__subtitle {
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+    max-width: 50ch;
+  }
+</style>

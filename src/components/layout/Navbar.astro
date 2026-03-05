@@ -1,0 +1,242 @@
+---
+/**
+ * Navbar — Top navigation bar with logo, links, and theme switcher.
+ *
+ * Features:
+ * - Sticky with backdrop blur
+ * - Responsive: collapses to a hamburger menu on mobile
+ * - Uses vanilla JS for the mobile toggle (no frameworks)
+ */
+import { NAV_LINKS, SITE_TITLE } from '../../utils/constants';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="navbar" role="banner">
+  <nav class="navbar__inner" aria-label="Main navigation">
+    <a href="/" class="navbar__logo" aria-label="Home">
+      {SITE_TITLE.split('—')[0].trim()}
+    </a>
+
+    <button
+      class="navbar__toggle"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+    >
+      <span class="navbar__hamburger" aria-hidden="true"></span>
+    </button>
+
+    <div class="navbar__menu" id="nav-menu">
+      <ul class="navbar__links">
+        {
+          NAV_LINKS.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class:list={['navbar__link', { 'navbar__link--active': currentPath === link.href }]}
+                aria-current={currentPath === link.href ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    background: var(--color-nav);
+    backdrop-filter: var(--nav-blur);
+    -webkit-backdrop-filter: var(--nav-blur);
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color var(--transition-base);
+  }
+
+  .navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+  }
+
+  .navbar__logo {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-heading);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .navbar__logo:hover {
+    color: var(--color-accent);
+  }
+
+  /* Desktop menu */
+  .navbar__menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .navbar__links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    list-style: none;
+  }
+
+  .navbar__link {
+    padding: 0.4em 0.75em;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition:
+      color var(--transition-fast),
+      background-color var(--transition-fast);
+  }
+
+  .navbar__link:hover {
+    color: var(--color-text);
+    background: var(--color-bg-alt);
+  }
+
+  .navbar__link--active {
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
+  }
+
+  /* Hamburger toggle */
+  .navbar__toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast);
+  }
+
+  .navbar__toggle:hover {
+    background: var(--color-bg-alt);
+  }
+
+  .navbar__hamburger {
+    position: relative;
+    width: 1.25rem;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 1px;
+    transition: background-color var(--transition-fast);
+  }
+
+  .navbar__hamburger::before,
+  .navbar__hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 1px;
+    transition: transform var(--transition-base);
+  }
+
+  .navbar__hamburger::before {
+    top: -6px;
+  }
+  .navbar__hamburger::after {
+    top: 6px;
+  }
+
+  /* Open state */
+  .navbar__toggle[aria-expanded='true'] .navbar__hamburger {
+    background: transparent;
+  }
+  .navbar__toggle[aria-expanded='true'] .navbar__hamburger::before {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .navbar__toggle[aria-expanded='true'] .navbar__hamburger::after {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* ─── Mobile ─── */
+  @media (max-width: 767px) {
+    .navbar__toggle {
+      display: flex;
+    }
+
+    .navbar__menu {
+      display: none;
+      position: absolute;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding: var(--space-md);
+      background: var(--color-nav);
+      backdrop-filter: var(--nav-blur);
+      -webkit-backdrop-filter: var(--nav-blur);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .navbar__menu.is-open {
+      display: flex;
+    }
+
+    .navbar__links {
+      flex-direction: column;
+      width: 100%;
+      gap: var(--space-3xs);
+    }
+
+    .navbar__link {
+      display: block;
+      width: 100%;
+      padding: 0.6em 0.75em;
+    }
+  }
+</style>
+
+<script>
+  function initNavbar() {
+    const toggle = document.querySelector<HTMLButtonElement>('.navbar__toggle');
+    const menu = document.querySelector<HTMLElement>('.navbar__menu');
+
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      menu.classList.toggle('is-open');
+    });
+
+    // Close menu when clicking a link (mobile)
+    menu.querySelectorAll('.navbar__link').forEach((link) => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('is-open');
+      });
+    });
+  }
+
+  initNavbar();
+  document.addEventListener('astro:after-swap', initNavbar);
+</script>

@@ -1,0 +1,535 @@
+/*
+ * ═══════════════════════════════════════════════════════════
+ *  THEME: Retro Mac
+ * ═══════════════════════════════════════════════════════════
+ *
+ *  Inspired by the classic Apple rainbow logo and early
+ *  Macintosh aesthetics (1984-1998). Beige/platinum background,
+ *  Chicago-style system font, rainbow stripe accents,
+ *  3D-beveled buttons, and pixel-perfect nostalgia.
+ *
+ *  🍎 Rainbow palette:
+ *     Green #61BB46 · Yellow #FDB827 · Orange #F5821F
+ *     Red #E03A3E · Purple #963D97 · Blue #009DDC
+ */
+
+[data-theme='retro'] {
+  /* ─── Backgrounds — Macintosh Platinum ─── */
+  --color-bg: #e8e4d9;
+  --color-bg-alt: #d6d1c4;
+
+  /* ─── Text ─── */
+  --color-text: #2b2926;
+  --color-text-muted: #6b665d;
+  --color-heading: #1a1815;
+
+  /* ─── Surfaces ─── */
+  --color-card: #f0ece3;
+  --color-card-hover: #f5f2eb;
+  --color-border: #b5af9f;
+  --color-nav: rgba(232, 228, 217, 0.95);
+
+  /* ─── Accent — Apple Blue ─── */
+  --color-accent: #009ddc;
+  --color-accent-hover: #0080b8;
+  --color-accent-text: #ffffff;
+  --color-accent-subtle: rgba(0, 157, 220, 0.08);
+
+  /* ─── Shadows — Beveled / System 7 ─── */
+  --shadow-sm: 1px 1px 0 #b5af9f;
+  --shadow-md: 2px 2px 0 #b5af9f;
+  --shadow-lg: 3px 3px 0 #b5af9f;
+
+  /* ─── Radii — Mostly square, slightly soft ─── */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-full: 4px;
+
+  /* ─── Theme-specific ─── */
+  --hero-gradient: none;
+  --card-border-width: 2px;
+  --timeline-color: #b5af9f;
+  --badge-bg: #f0ece3;
+  --badge-text: #963d97;
+  --tag-bg: #f8f6f0;
+  --tag-text: #009ddc;
+  --nav-blur: none;
+
+  /* ─── Rainbow palette vars (used in overrides) ─── */
+  --retro-green: #61bb46;
+  --retro-yellow: #fdb827;
+  --retro-orange: #f5821f;
+  --retro-red: #e03a3e;
+  --retro-purple: #963d97;
+  --retro-blue: #009ddc;
+}
+
+/* ───────────────────────────────────────────────────────────
+ *  Retro — Classic Macintosh 1984-1998 aesthetic
+ * ─────────────────────────────────────────────────────────── */
+
+/* System-style bitmap font feel via fallback stack */
+[data-theme='retro'] body {
+  font-family: 'Chicago', 'Geneva', 'Charcoal', 'Lucida Grande',
+    'Helvetica Neue', Arial, sans-serif;
+}
+
+[data-theme='retro'] h1,
+[data-theme='retro'] h2,
+[data-theme='retro'] h3,
+[data-theme='retro'] h4 {
+  font-family: 'Chicago', 'Geneva', 'Charcoal', 'Lucida Grande',
+    'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+/* ─── Rainbow Stripe Bar — the signature element ─── */
+
+[data-theme='retro'] body::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 6px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  background: linear-gradient(
+    90deg,
+    var(--retro-green) 0%,
+    var(--retro-green) 16.66%,
+    var(--retro-yellow) 16.66%,
+    var(--retro-yellow) 33.33%,
+    var(--retro-orange) 33.33%,
+    var(--retro-orange) 50%,
+    var(--retro-red) 50%,
+    var(--retro-red) 66.66%,
+    var(--retro-purple) 66.66%,
+    var(--retro-purple) 83.33%,
+    var(--retro-blue) 83.33%,
+    var(--retro-blue) 100%
+  );
+}
+
+/* Push navbar below the rainbow stripe */
+[data-theme='retro'] .navbar {
+  top: 6px;
+  border-bottom: 2px solid var(--color-border);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: var(--color-nav);
+  box-shadow: 0 2px 0 #b5af9f;
+}
+
+[data-theme='retro'] .navbar__logo {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+[data-theme='retro'] .navbar__logo::before {
+  content: '🍎 ';
+}
+
+[data-theme='retro'] .navbar__link {
+  border-radius: 2px;
+  font-weight: 500;
+}
+
+[data-theme='retro'] .navbar__link:hover {
+  background: var(--retro-blue);
+  color: #ffffff;
+}
+
+[data-theme='retro'] .navbar__link--active {
+  background: var(--retro-blue);
+  color: #ffffff;
+}
+
+/* ─── Hero: retro Mac window frame feel ─── */
+
+[data-theme='retro'] .hero {
+  padding-block: 3.5rem 2.5rem;
+  margin-top: 6px; /* offset for rainbow bar */
+}
+
+[data-theme='retro'] .hero__avatar {
+  border-radius: 3px;
+  border: 2px solid var(--color-border);
+  box-shadow: 2px 2px 0 #b5af9f;
+}
+
+[data-theme='retro'] .hero__name {
+  font-size: 2.5rem;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+  [data-theme='retro'] .hero__name {
+    font-size: 3.25rem;
+  }
+}
+
+/* Rainbow underline on the hero name */
+[data-theme='retro'] .hero__name {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.3em;
+}
+
+[data-theme='retro'] .hero__name::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--retro-green),
+    var(--retro-yellow),
+    var(--retro-orange),
+    var(--retro-red),
+    var(--retro-purple),
+    var(--retro-blue)
+  );
+}
+
+[data-theme='retro'] .hero__role {
+  font-weight: 600;
+  color: var(--retro-purple);
+}
+
+/* ─── Cards: Mac window style (title bar + bevel) ─── */
+
+[data-theme='retro'] .card {
+  border: 2px solid var(--color-border);
+  border-radius: 3px;
+  background: var(--color-card);
+  box-shadow: 3px 3px 0 #b5af9f;
+  position: relative;
+  padding-top: calc(var(--space-md) + 8px);
+}
+
+/* Fake window title bar */
+[data-theme='retro'] .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 22px;
+  background: linear-gradient(180deg, #f5f2eb, #d6d1c4);
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 1px 1px 0 0;
+}
+
+/* Title bar stripes (classic Mac horizontal lines) */
+[data-theme='retro'] .card::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 24px;
+  right: 24px;
+  height: 14px;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    var(--color-border) 2px,
+    var(--color-border) 3px
+  );
+  border-radius: 1px;
+}
+
+[data-theme='retro'] .card--hoverable:hover {
+  box-shadow: 4px 4px 0 #948e7e;
+  transform: translate(-1px, -1px);
+  border-color: var(--retro-blue);
+}
+
+/* ─── Section titles: rainbow dash ─── */
+
+[data-theme='retro'] .section__title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  position: relative;
+  display: inline-block;
+  padding-bottom: var(--space-2xs);
+}
+
+[data-theme='retro'] .section__title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--retro-green),
+    var(--retro-yellow),
+    var(--retro-orange),
+    var(--retro-red),
+    var(--retro-purple),
+    var(--retro-blue)
+  );
+}
+
+/* ─── Timeline: rainbow dots ─── */
+
+[data-theme='retro'] .exp-item__dot {
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--color-bg);
+  box-shadow: 0 0 0 2px var(--color-border);
+}
+
+/* Color each dot differently using nth-child */
+[data-theme='retro'] .exp-item:nth-child(6n+1) .exp-item__dot { background: var(--retro-green); box-shadow: 0 0 0 2px var(--retro-green); }
+[data-theme='retro'] .exp-item:nth-child(6n+2) .exp-item__dot { background: var(--retro-yellow); box-shadow: 0 0 0 2px var(--retro-yellow); }
+[data-theme='retro'] .exp-item:nth-child(6n+3) .exp-item__dot { background: var(--retro-orange); box-shadow: 0 0 0 2px var(--retro-orange); }
+[data-theme='retro'] .exp-item:nth-child(6n+4) .exp-item__dot { background: var(--retro-red); box-shadow: 0 0 0 2px var(--retro-red); }
+[data-theme='retro'] .exp-item:nth-child(6n+5) .exp-item__dot { background: var(--retro-purple); box-shadow: 0 0 0 2px var(--retro-purple); }
+[data-theme='retro'] .exp-item:nth-child(6n+6) .exp-item__dot { background: var(--retro-blue); box-shadow: 0 0 0 2px var(--retro-blue); }
+
+[data-theme='retro'] .exp-item::before {
+  background: linear-gradient(
+    to bottom,
+    var(--retro-green),
+    var(--retro-yellow),
+    var(--retro-orange),
+    var(--retro-red),
+    var(--retro-purple),
+    var(--retro-blue)
+  );
+  width: 2px;
+}
+
+/* ─── Tags: colorful pills, each color cycles ─── */
+
+[data-theme='retro'] .tag {
+  border: 1.5px solid var(--color-border);
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+[data-theme='retro'] .tag:nth-child(6n+1) { color: var(--retro-green); border-color: var(--retro-green); }
+[data-theme='retro'] .tag:nth-child(6n+2) { color: var(--retro-yellow); border-color: var(--retro-yellow); }
+[data-theme='retro'] .tag:nth-child(6n+3) { color: var(--retro-orange); border-color: var(--retro-orange); }
+[data-theme='retro'] .tag:nth-child(6n+4) { color: var(--retro-red); border-color: var(--retro-red); }
+[data-theme='retro'] .tag:nth-child(6n+5) { color: var(--retro-purple); border-color: var(--retro-purple); }
+[data-theme='retro'] .tag:nth-child(6n+6) { color: var(--retro-blue); border-color: var(--retro-blue); }
+
+/* ─── Badges: retro colored ─── */
+
+[data-theme='retro'] .badge {
+  border-radius: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+}
+
+[data-theme='retro'] .badge--default {
+  border: 1.5px solid var(--retro-purple);
+  background: rgba(150, 61, 151, 0.06);
+  color: var(--retro-purple);
+}
+
+[data-theme='retro'] .badge--accent {
+  background: var(--retro-blue);
+  color: #ffffff;
+}
+
+/* ─── Buttons: beveled 3D, classic Mac style ─── */
+
+[data-theme='retro'] .btn {
+  border-radius: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+}
+
+[data-theme='retro'] .btn:hover {
+  transform: none;
+}
+
+[data-theme='retro'] .btn--primary {
+  background: var(--retro-blue);
+  color: #ffffff;
+  border: 2px solid var(--retro-blue);
+  box-shadow: 2px 2px 0 #0080b8;
+}
+
+[data-theme='retro'] .btn--primary:hover {
+  background: #0080b8;
+  box-shadow: 1px 1px 0 #006090;
+}
+
+[data-theme='retro'] .btn--primary:active {
+  box-shadow: none;
+  transform: translate(2px, 2px);
+}
+
+[data-theme='retro'] .btn--outline {
+  box-shadow:
+    inset 0 0 0 2px var(--retro-blue),
+    2px 2px 0 #b5af9f;
+  background: var(--color-card);
+}
+
+[data-theme='retro'] .btn--outline:hover {
+  background: rgba(0, 157, 220, 0.08);
+}
+
+[data-theme='retro'] .btn--outline:active {
+  box-shadow: inset 0 0 0 2px var(--retro-blue);
+  transform: translate(2px, 2px);
+}
+
+/* ─── Footer: rainbow stripe top ─── */
+
+[data-theme='retro'] .footer {
+  border-top: none;
+  position: relative;
+  margin-top: var(--space-2xl);
+}
+
+[data-theme='retro'] .footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--retro-green) 0%,
+    var(--retro-green) 16.66%,
+    var(--retro-yellow) 16.66%,
+    var(--retro-yellow) 33.33%,
+    var(--retro-orange) 33.33%,
+    var(--retro-orange) 50%,
+    var(--retro-red) 50%,
+    var(--retro-red) 66.66%,
+    var(--retro-purple) 66.66%,
+    var(--retro-purple) 83.33%,
+    var(--retro-blue) 83.33%,
+    var(--retro-blue) 100%
+  );
+}
+
+/* ─── Prose: retro styling ─── */
+
+[data-theme='retro'] .prose {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+[data-theme='retro'] .prose h2 {
+  border-bottom: 2px solid var(--color-border);
+  position: relative;
+}
+
+[data-theme='retro'] .prose h2::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--retro-green),
+    var(--retro-yellow),
+    var(--retro-orange),
+    var(--retro-red),
+    var(--retro-purple),
+    var(--retro-blue)
+  );
+}
+
+[data-theme='retro'] .prose code {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  color: var(--retro-purple);
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+[data-theme='retro'] .prose blockquote {
+  border-left: 4px solid;
+  border-image: linear-gradient(
+    to bottom,
+    var(--retro-green),
+    var(--retro-yellow),
+    var(--retro-orange),
+    var(--retro-red),
+    var(--retro-purple),
+    var(--retro-blue)
+  ) 1;
+  background: rgba(0, 157, 220, 0.04);
+  padding: var(--space-sm) var(--space-md);
+}
+
+/* ─── Project card links: colored ─── */
+
+[data-theme='retro'] .project-card__link {
+  font-weight: 600;
+}
+
+[data-theme='retro'] .project-card__link:first-child {
+  color: var(--retro-green);
+}
+
+[data-theme='retro'] .project-card__link:last-child {
+  color: var(--retro-purple);
+}
+
+/* ─── Post card: retro read more ─── */
+
+[data-theme='retro'] .post-card__read-more {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* ─── ThemeSwitcher (if present): retro style ─── */
+
+[data-theme='retro'] .theme-switcher {
+  border-radius: 3px;
+  border: 2px solid var(--color-border);
+  background: var(--color-card);
+  box-shadow: 2px 2px 0 #b5af9f;
+}
+
+[data-theme='retro'] .theme-switcher__btn {
+  border-radius: 2px;
+}
+
+[data-theme='retro'] .theme-switcher__btn[aria-checked='true'] {
+  background: var(--retro-blue);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+/* ─── Subtle dither / noise texture for the vintage feel ─── */
+
+[data-theme='retro'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23000'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23000'/%3E%3C/svg%3E");
+  background-size: 4px 4px;
+}

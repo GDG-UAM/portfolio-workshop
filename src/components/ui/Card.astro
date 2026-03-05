@@ -1,0 +1,52 @@
+---
+/**
+ * Card — A versatile content container with consistent padding and borders.
+ *
+ * Usage:
+ *   <Card>Content here</Card>
+ *   <Card href="/post/1" hoverable>Clickable card</Card>
+ */
+interface Props {
+  href?: string;
+  hoverable?: boolean;
+  class?: string;
+}
+
+const { href, hoverable = false, class: className } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag href={href} class:list={['card', { 'card--hoverable': hoverable || !!href }, className]}>
+  <slot />
+</Tag>
+
+<style>
+  .card {
+    display: block;
+    padding: var(--space-md);
+    background: var(--color-card);
+    border: var(--card-border-width) solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition:
+      background-color var(--transition-base),
+      box-shadow var(--transition-base),
+      transform var(--transition-base),
+      border-color var(--transition-base);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card--hoverable:hover {
+    background: var(--color-card-hover);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--color-accent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card--hoverable:hover {
+      transform: none;
+    }
+  }
+</style>

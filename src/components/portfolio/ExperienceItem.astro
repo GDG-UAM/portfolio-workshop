@@ -1,0 +1,148 @@
+---
+/**
+ * ExperienceItem — A single experience entry in the timeline.
+ */
+import { formatDateRange } from '../../utils/formatDate';
+
+interface Props {
+  role: string;
+  company: string;
+  url?: string;
+  startDate: Date;
+  endDate?: Date;
+  description: string;
+  highlights: string[];
+}
+
+const { role, company, url, startDate, endDate, description, highlights } = Astro.props;
+const dateRange = formatDateRange(startDate, endDate);
+---
+
+<article class="exp-item">
+  <div class="exp-item__dot" aria-hidden="true"></div>
+
+  <div class="exp-item__content">
+    <header class="exp-item__header">
+      <h3 class="exp-item__role">{role}</h3>
+      <p class="exp-item__company">
+        {
+          url ? (
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              {company}
+            </a>
+          ) : (
+            company
+          )
+        }
+      </p>
+      <time class="exp-item__date">{dateRange}</time>
+    </header>
+
+    <p class="exp-item__description">{description}</p>
+
+    {
+      highlights.length > 0 && (
+        <ul class="exp-item__highlights">
+          {highlights.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .exp-item {
+    position: relative;
+    padding-left: var(--space-lg);
+    padding-bottom: var(--space-xl);
+  }
+
+  /* Timeline line */
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    bottom: 0;
+    width: 1px;
+    background: var(--timeline-color);
+  }
+
+  .exp-item:last-child::before {
+    display: none;
+  }
+
+  .exp-item:last-child {
+    padding-bottom: 0;
+  }
+
+  /* Timeline dot */
+  .exp-item__dot {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    border: 2px solid var(--color-bg);
+    box-shadow: 0 0 0 2px var(--color-accent);
+  }
+
+  .exp-item__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+
+  .exp-item__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .exp-item__role {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-heading);
+  }
+
+  .exp-item__company {
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+  }
+
+  .exp-item__company a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .exp-item__date {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .exp-item__description {
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-normal);
+  }
+
+  .exp-item__highlights {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+    padding-left: var(--space-sm);
+    list-style: disc;
+    margin-top: var(--space-2xs);
+  }
+
+  .exp-item__highlights li {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    line-height: var(--line-height-normal);
+  }
+</style>

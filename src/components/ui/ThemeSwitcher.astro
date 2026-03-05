@@ -1,0 +1,139 @@
+---
+/**
+ * ThemeSwitcher — Lets users toggle between visual themes.
+ *
+ * Themes are defined in src/styles/themes/ and listed in src/utils/constants.ts.
+ * The selected theme is persisted in localStorage and can be overridden
+ * with a ?theme= query parameter (useful for sharing demos).
+ *
+ * No framework needed — pure vanilla JS.
+ */
+import { THEMES } from '../../utils/constants';
+---
+
+<div class="theme-switcher" role="radiogroup" aria-label="Choose color theme">
+  {
+    THEMES.map((theme) => (
+      <button
+        class="theme-switcher__btn"
+        data-set-theme={theme.id}
+        aria-label={`Switch to ${theme.label} theme`}
+      >
+        <span class="theme-switcher__dot" />
+        <span class="theme-switcher__label">{theme.label}</span>
+      </button>
+    ))
+  }
+</div>
+
+<style>
+  .theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    padding: var(--space-3xs);
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+  }
+
+  .theme-switcher__btn {
+    display: flex;
+    align-items: center;
+    gap: 0.35em;
+    padding: 0.3em 0.7em;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition:
+      background-color var(--transition-fast),
+      color var(--transition-fast);
+  }
+
+  .theme-switcher__btn:hover {
+    color: var(--color-text);
+  }
+
+  .theme-switcher__btn[aria-checked='true'] {
+    background: var(--color-card);
+    color: var(--color-accent);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .theme-switcher__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+    transition: opacity var(--transition-fast);
+  }
+
+  .theme-switcher__btn[aria-checked='true'] .theme-switcher__dot {
+    opacity: 1;
+  }
+
+  .theme-switcher__label {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .theme-switcher__label {
+      display: inline;
+    }
+  }
+</style>
+
+<script>
+  /**
+   * Theme Switcher Logic
+   *
+   * Priority:
+   *   1. ?theme= query param (overrides everything, also saves to localStorage)
+   *   2. localStorage value
+   *   3. Default theme ('classic')
+   */
+  function initThemeSwitcher() {
+    const DEFAULT = 'classic';
+    const STORAGE_KEY = 'portfolio-theme';
+
+    // Determine initial theme
+    const params = new URLSearchParams(window.location.search);
+    const paramTheme = params.get('theme');
+    const storedTheme = localStorage.getItem(STORAGE_KEY);
+    const theme = paramTheme || storedTheme || DEFAULT;
+
+    // Apply theme
+    applyTheme(theme);
+
+    // Set up buttons
+    const buttons = document.querySelectorAll<HTMLButtonElement>('[data-set-theme]');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const newTheme = btn.dataset.setTheme!;
+        applyTheme(newTheme);
+        localStorage.setItem(STORAGE_KEY, newTheme);
+      });
+    });
+
+    function applyTheme(t: string) {
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem(STORAGE_KEY, t);
+
+      // Update ARIA states on buttons
+      buttons.forEach((btn) => {
+        const isActive = btn.dataset.setTheme === t;
+        btn.setAttribute('aria-checked', String(isActive));
+        btn.setAttribute('role', 'radio');
+      });
+    }
+  }
+
+  // Run on initial load and on Astro page transitions (if any)
+  initThemeSwitcher();
+  document.addEventListener('astro:after-swap', initThemeSwitcher);
+</script>

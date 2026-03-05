@@ -1,0 +1,22 @@
+- id: upm-cs
+  institution: Universidad Politécnica de Madrid
+  degree: Bachelor's Degree
+  field: Computer Science
+  startDate: 2019-09-01
+  endDate: 2023-06-30
+  description: Specialized in software engineering and human-computer interaction.
+  details:
+    - "Thesis: 'Accessible Design Systems — A Pattern Language for Inclusive UI Components' (Grade: 9.2/10)"
+    - Active member of the university's open-source club and hackathon team
+    - Dean's list for 3 consecutive semesters
+
+- id: google-ux
+  institution: Google / Coursera
+  degree: Professional Certificate
+  field: UX Design
+  startDate: 2023-02-01
+  endDate: 2023-07-15
+  description: Completed the 7-course Google UX Design Professional Certificate.
+  details:
+    - Learned the full UX design process from research and wireframing to high-fidelity prototyping
+    - Created 3 end-to-end case studies with real user testing and iterative design

@@ -1,0 +1,7 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#FAFAF9"/>
+  <rect x="60" y="60" width="1080" height="510" rx="24" fill="#F3F2EF" stroke="#E5E4E1" stroke-width="2"/>
+  <text x="600" y="270" text-anchor="middle" fill="#1A1A1A" font-family="system-ui, sans-serif" font-size="48" font-weight="700">Elena Navarro</text>
+  <text x="600" y="330" text-anchor="middle" fill="#4F46E5" font-family="system-ui, sans-serif" font-size="24" font-weight="500">Software Engineer &amp; Creative Technologist</text>
+  <text x="600" y="390" text-anchor="middle" fill="#6B6B6B" font-family="system-ui, sans-serif" font-size="18">Building clean, accessible digital experiences</text>
+</svg>

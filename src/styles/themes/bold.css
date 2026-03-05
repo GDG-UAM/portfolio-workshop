@@ -1,0 +1,319 @@
+/*
+ * ═══════════════════════════════════════════════════════════
+ *  THEME: Bold Gradient
+ * ═══════════════════════════════════════════════════════════
+ *
+ *  Rich dark background with neon violet gradients,
+ *  glassmorphism cards, glowing accents, and dramatic shadows.
+ *  Think: Linear.app meets a futuristic dashboard.
+ */
+
+[data-theme='bold'] {
+  /* ─── Backgrounds ─── */
+  --color-bg: #0a0818;
+  --color-bg-alt: #13102a;
+
+  /* ─── Text ─── */
+  --color-text: #c8c3e3;
+  --color-text-muted: #8078a8;
+  --color-heading: #f4f0ff;
+
+  /* ─── Surfaces ─── */
+  --color-card: rgba(25, 20, 55, 0.6);
+  --color-card-hover: rgba(35, 28, 75, 0.75);
+  --color-border: rgba(140, 110, 255, 0.12);
+  --color-nav: rgba(10, 8, 24, 0.75);
+
+  /* ─── Accent ─── */
+  --color-accent: #a78bfa;
+  --color-accent-hover: #c4b5fd;
+  --color-accent-text: #0a0818;
+  --color-accent-subtle: rgba(167, 139, 250, 0.1);
+
+  /* ─── Shadows ─── */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 20px rgba(100, 60, 255, 0.12);
+  --shadow-lg: 0 8px 40px rgba(100, 60, 255, 0.18);
+
+  /* ─── Radii ─── */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ─── Theme-specific ─── */
+  --hero-gradient: radial-gradient(
+      ellipse 80% 50% at 50% -20%,
+      rgba(120, 60, 255, 0.25) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 80% 50%,
+      rgba(236, 72, 153, 0.12) 0%,
+      transparent 60%
+    );
+  --card-border-width: 1px;
+  --timeline-color: rgba(167, 139, 250, 0.2);
+  --badge-bg: rgba(167, 139, 250, 0.12);
+  --badge-text: #c4b5fd;
+  --tag-bg: rgba(167, 139, 250, 0.12);
+  --tag-text: #c4b5fd;
+  --nav-blur: saturate(200%) blur(20px);
+}
+
+/* ───────────────────────────────────────────────────────────
+ *  Bold — Glow, glass, and gradients
+ * ─────────────────────────────────────────────────────────── */
+
+/* ─── Bold Navbar: glow bottom border, gradient logo ─── */
+
+[data-theme='bold'] .navbar {
+  border-bottom: 1px solid rgba(140, 110, 255, 0.15);
+  box-shadow: 0 1px 30px rgba(120, 60, 255, 0.08);
+}
+
+[data-theme='bold'] .navbar__logo {
+  background: linear-gradient(135deg, #a78bfa, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+[data-theme='bold'] .navbar__link--active {
+  background: linear-gradient(
+    135deg,
+    rgba(167, 139, 250, 0.15),
+    rgba(236, 72, 153, 0.08)
+  );
+}
+
+/* ─── Bold Hero: large gradient mesh, glow text ─── */
+
+[data-theme='bold'] .hero {
+  padding-block: 6rem 4rem;
+}
+
+[data-theme='bold'] .hero__bg {
+  opacity: 1;
+}
+
+[data-theme='bold'] .hero__avatar {
+  border: 2px solid rgba(167, 139, 250, 0.4);
+  box-shadow:
+    0 0 20px rgba(167, 139, 250, 0.3),
+    0 0 60px rgba(167, 139, 250, 0.1);
+}
+
+[data-theme='bold'] .hero__name {
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #f4f0ff 30%, #a78bfa 70%, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.04em;
+}
+
+@media (min-width: 768px) {
+  [data-theme='bold'] .hero__name {
+    font-size: 4.5rem;
+  }
+}
+
+[data-theme='bold'] .hero__role {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+}
+
+/* ─── Bold Cards: glass + gradient border + glow hover ─── */
+
+[data-theme='bold'] .card {
+  background: rgba(25, 20, 55, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(140, 110, 255, 0.1);
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme='bold'] .card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(167, 139, 250, 0.15),
+    rgba(236, 72, 153, 0.08),
+    transparent 60%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+[data-theme='bold'] .card--hoverable:hover {
+  box-shadow:
+    0 4px 30px rgba(120, 60, 255, 0.2),
+    0 0 0 1px rgba(167, 139, 250, 0.2);
+  transform: translateY(-4px);
+  border-color: rgba(167, 139, 250, 0.25);
+}
+
+/* ─── Bold Section titles: gradient underline ─── */
+
+[data-theme='bold'] .section__title {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  position: relative;
+  display: inline-block;
+  padding-bottom: var(--space-2xs);
+}
+
+[data-theme='bold'] .section__title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #a78bfa, #ec4899, transparent);
+}
+
+/* ─── Bold Timeline: glow dots ─── */
+
+[data-theme='bold'] .exp-item__dot {
+  box-shadow:
+    0 0 8px rgba(167, 139, 250, 0.5),
+    0 0 20px rgba(167, 139, 250, 0.2);
+}
+
+[data-theme='bold'] .exp-item::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(167, 139, 250, 0.3),
+    rgba(236, 72, 153, 0.1)
+  );
+}
+
+/* ─── Bold Tags: glass pills ─── */
+
+[data-theme='bold'] .tag {
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(167, 139, 250, 0.15);
+  border-radius: var(--radius-full);
+}
+
+/* ─── Bold Badges: glow ─── */
+
+[data-theme='bold'] .badge--default {
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  backdrop-filter: blur(6px);
+}
+
+/* ─── Bold Buttons: gradient primary ─── */
+
+[data-theme='bold'] .btn--primary {
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+  box-shadow: 0 2px 16px rgba(139, 92, 246, 0.3);
+}
+
+[data-theme='bold'] .btn--primary:hover {
+  background: linear-gradient(135deg, #c4b5fd, #a78bfa);
+  box-shadow: 0 4px 24px rgba(139, 92, 246, 0.5);
+}
+
+[data-theme='bold'] .btn--outline {
+  box-shadow: inset 0 0 0 1.5px rgba(167, 139, 250, 0.5);
+}
+
+[data-theme='bold'] .btn--outline:hover {
+  box-shadow:
+    inset 0 0 0 1.5px var(--color-accent),
+    0 0 16px rgba(167, 139, 250, 0.2);
+}
+
+/* ─── Bold Footer: gradient top bar ─── */
+
+[data-theme='bold'] .footer {
+  border-top: none;
+  position: relative;
+}
+
+[data-theme='bold'] .footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(167, 139, 250, 0.4),
+    rgba(236, 72, 153, 0.2),
+    transparent
+  );
+}
+
+/* ─── Bold Prose: violet accents ─── */
+
+[data-theme='bold'] .prose h2 {
+  border-bottom-color: rgba(167, 139, 250, 0.2);
+}
+
+[data-theme='bold'] .prose code {
+  background: rgba(167, 139, 250, 0.1);
+  border-color: rgba(167, 139, 250, 0.15);
+  color: #c4b5fd;
+}
+
+[data-theme='bold'] .prose blockquote {
+  border-left-color: #a78bfa;
+  background: rgba(167, 139, 250, 0.04);
+  padding: var(--space-md);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+/* ─── Bold ThemeSwitcher: glass ─── */
+
+[data-theme='bold'] .theme-switcher {
+  background: rgba(25, 20, 55, 0.6);
+  backdrop-filter: blur(10px);
+  border-color: rgba(140, 110, 255, 0.15);
+}
+
+[data-theme='bold'] .theme-switcher__btn[aria-checked='true'] {
+  background: linear-gradient(
+    135deg,
+    rgba(167, 139, 250, 0.2),
+    rgba(236, 72, 153, 0.1)
+  );
+  box-shadow: 0 0 12px rgba(167, 139, 250, 0.15);
+}
+
+/* ─── Bold Project links: glow ─── */
+
+[data-theme='bold'] .project-card__link:hover {
+  text-shadow: 0 0 12px rgba(167, 139, 250, 0.4);
+}
+
+/* ─── Bold Post "Read more" ─── */
+
+[data-theme='bold'] .post-card__read-more {
+  background: linear-gradient(90deg, #a78bfa, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

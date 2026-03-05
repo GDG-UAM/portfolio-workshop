@@ -1,0 +1,34 @@
+- id: taskflow
+  title: Taskflow
+  description: A minimalist productivity app with real-time collaboration, built with Astro and TypeScript. Features drag-and-drop Kanban boards, keyboard shortcuts, and offline support.
+  tags:
+    - Astro
+    - TypeScript
+    - IndexedDB
+    - WebSockets
+  url: https://taskflow.demo.dev
+  repo: https://github.com/elenanavarro/taskflow
+  featured: true
+
+- id: dataviz-studio
+  title: DataViz Studio
+  description: An interactive data visualization dashboard that turns raw CSV/JSON data into beautiful, shareable charts. Built with Python backend and D3.js frontend.
+  tags:
+    - Python
+    - D3.js
+    - FastAPI
+    - Data Visualization
+  url: https://dataviz-studio.demo.dev
+  repo: https://github.com/elenanavarro/dataviz-studio
+  featured: true
+
+- id: opencontrib
+  title: OpenContrib CLI
+  description: A command-line tool that helps developers find and track their open-source contributions across GitHub. Written in Rust for blazing-fast performance.
+  tags:
+    - Rust
+    - CLI
+    - GitHub API
+    - Open Source
+  repo: https://github.com/elenanavarro/opencontrib
+  featured: true

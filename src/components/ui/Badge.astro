@@ -1,0 +1,45 @@
+---
+/**
+ * Badge — A small label for skills, categories, or status indicators.
+ *
+ * Usage:
+ *   <Badge>TypeScript</Badge>
+ *   <Badge variant="accent">Featured</Badge>
+ */
+interface Props {
+  variant?: 'default' | 'accent';
+  class?: string;
+}
+
+const { variant = 'default', class: className } = Astro.props;
+---
+
+<span class:list={['badge', `badge--${variant}`, className]}>
+  <slot />
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25em 0.65em;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.4;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    transition:
+      background-color var(--transition-fast),
+      color var(--transition-fast);
+  }
+
+  .badge--default {
+    background: var(--badge-bg);
+    color: var(--badge-text);
+  }
+
+  .badge--accent {
+    background: var(--color-accent);
+    color: var(--color-accent-text);
+  }
+</style>

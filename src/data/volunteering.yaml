@@ -1,0 +1,21 @@
+- id: coderdojo
+  organization: CoderDojo Madrid
+  role: Lead Mentor
+  url: https://coderdojo.com
+  startDate: 2023-03-01
+  description: Teaching programming fundamentals to kids aged 7–17 through hands-on workshops every weekend.
+  contributions:
+    - Designed a beginner-friendly curriculum covering Scratch, Python, and web basics
+    - Mentored 40+ young learners across 50+ sessions
+    - Organized a community hackathon with 80 participants and 5 sponsor companies
+
+- id: gdg-madrid
+  organization: GDG Madrid
+  role: Co-organizer & Speaker
+  url: https://gdg.community.dev/gdg-madrid
+  startDate: 2024-01-15
+  description: Helping organize tech meetups and conferences for the Google Developer Group community in Madrid.
+  contributions:
+    - Co-organized 12 monthly meetups averaging 60+ attendees each
+    - Delivered 3 talks on web performance, Astro, and accessibility
+    - Launched a mentorship program connecting 15 junior developers with senior professionals

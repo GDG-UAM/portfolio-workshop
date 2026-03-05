@@ -1,0 +1,384 @@
+/*
+ * ═══════════════════════════════════════════════════════════
+ *  THEME: Futura White
+ * ═══════════════════════════════════════════════════════════
+ *
+ *  Ultra-clean white canvas. Micro-interactions, hairline borders,
+ *  liquid-smooth gradients, frosted glass, and typographic precision.
+ *  Think: Apple.com + Dieter Rams + Stripe's design language.
+ */
+
+[data-theme='futura'] {
+  /* ─── Backgrounds ─── */
+  --color-bg: #ffffff;
+  --color-bg-alt: #f7f7f8;
+
+  /* ─── Text ─── */
+  --color-text: #52525b;
+  --color-text-muted: #a1a1aa;
+  --color-heading: #09090b;
+
+  /* ─── Surfaces ─── */
+  --color-card: #ffffff;
+  --color-card-hover: #fafafa;
+  --color-border: #e4e4e7;
+  --color-nav: rgba(255, 255, 255, 0.72);
+
+  /* ─── Accent — Electric Cyan ─── */
+  --color-accent: #06b6d4;
+  --color-accent-hover: #0891b2;
+  --color-accent-text: #ffffff;
+  --color-accent-subtle: rgba(6, 182, 212, 0.05);
+
+  /* ─── Shadows — Layered, ultra-soft ─── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.05), 0 4px 10px -4px rgba(0, 0, 0, 0.03);
+
+  /* ─── Radii — Smooth, modern ─── */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-full: 9999px;
+
+  /* ─── Theme-specific ─── */
+  --hero-gradient: radial-gradient(
+      ellipse 70% 50% at 50% 0%,
+      rgba(6, 182, 212, 0.06) 0%,
+      transparent 70%
+    );
+  --card-border-width: 1px;
+  --timeline-color: #e4e4e7;
+  --badge-bg: #f4f4f5;
+  --badge-text: #09090b;
+  --tag-bg: #f4f4f5;
+  --tag-text: #3f3f46;
+  --nav-blur: saturate(200%) blur(20px);
+}
+
+/* ───────────────────────────────────────────────────────────
+ *  Futura — Ultra-clean, detail-obsessed white design
+ * ─────────────────────────────────────────────────────────── */
+
+[data-theme='futura'] body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.011em;
+}
+
+[data-theme='futura'] h1,
+[data-theme='futura'] h2,
+[data-theme='futura'] h3,
+[data-theme='futura'] h4 {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+/* ─── Navbar: frosted glass, hairline ─── */
+
+[data-theme='futura'] .navbar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+}
+
+[data-theme='futura'] .navbar__logo {
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+[data-theme='futura'] .navbar__link {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-full);
+  padding: 0.35em 0.9em;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='futura'] .navbar__link:hover {
+  color: var(--color-heading);
+  background: var(--color-bg-alt);
+}
+
+[data-theme='futura'] .navbar__link--active {
+  color: var(--color-heading);
+  background: var(--color-bg-alt);
+  font-weight: 600;
+}
+
+/* ─── Hero: airy, spacious, gradient dot grid ─── */
+
+[data-theme='futura'] .hero {
+  padding-block: 6rem 4rem;
+  position: relative;
+}
+
+/* Micro dot grid pattern behind hero */
+[data-theme='futura'] .hero__bg {
+  opacity: 1;
+  background-image:
+    var(--hero-gradient),
+    radial-gradient(circle, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 100% 100%, 24px 24px;
+}
+
+[data-theme='futura'] .hero__avatar {
+  border: none;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    var(--shadow-lg);
+  border-radius: var(--radius-lg);
+}
+
+[data-theme='futura'] .hero__name {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--color-heading);
+}
+
+@media (min-width: 768px) {
+  [data-theme='futura'] .hero__name {
+    font-size: 4.25rem;
+  }
+}
+
+[data-theme='futura'] .hero__role {
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--color-accent);
+  letter-spacing: 0;
+}
+
+[data-theme='futura'] .hero__tagline {
+  font-size: 1.05rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* ─── Cards: floating glass, subtle border ─── */
+
+[data-theme='futura'] .card {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-lg);
+  background: var(--color-card);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='futura'] .card--hoverable:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(6, 182, 212, 0.15);
+  transform: translateY(-3px);
+}
+
+/* Subtle top-edge shine on cards */
+[data-theme='futura'] .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(6, 182, 212, 0.2),
+    transparent
+  );
+  border-radius: 1px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+[data-theme='futura'] .card--hoverable:hover::before {
+  opacity: 1;
+}
+
+/* ─── Section titles: thin, precise ─── */
+
+[data-theme='futura'] .section__title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+}
+
+[data-theme='futura'] .section__subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-heading);
+  letter-spacing: -0.02em;
+}
+
+/* ─── Timeline: thin, elegant ─── */
+
+[data-theme='futura'] .exp-item__dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  border: 2px solid var(--color-bg);
+  box-shadow: 0 0 0 1.5px var(--color-accent);
+}
+
+[data-theme='futura'] .exp-item::before {
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-border),
+    transparent
+  );
+}
+
+[data-theme='futura'] .exp-item__role {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+[data-theme='futura'] .exp-item__date {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ─── Tags: pill, ghost ─── */
+
+[data-theme='futura'] .tag {
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text);
+}
+
+/* ─── Badges: minimal ─── */
+
+[data-theme='futura'] .badge--default {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+/* ─── Buttons: smooth, modern ─── */
+
+[data-theme='futura'] .btn {
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: -0.005em;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='futura'] .btn--primary {
+  background: var(--color-heading);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme='futura'] .btn--primary:hover {
+  background: #27272a;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+[data-theme='futura'] .btn--outline {
+  box-shadow: inset 0 0 0 1px var(--color-border);
+  color: var(--color-heading);
+}
+
+[data-theme='futura'] .btn--outline:hover {
+  background: var(--color-bg-alt);
+  box-shadow: inset 0 0 0 1px var(--color-heading);
+}
+
+/* ─── Footer: clean divider ─── */
+
+[data-theme='futura'] .footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+[data-theme='futura'] .footer__copyright,
+[data-theme='futura'] .footer__built {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* ─── Prose: refined reading ─── */
+
+[data-theme='futura'] .prose {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--color-text);
+}
+
+[data-theme='futura'] .prose h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 0.5rem;
+}
+
+[data-theme='futura'] .prose code {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85em;
+  color: var(--color-heading);
+}
+
+[data-theme='futura'] .prose blockquote {
+  border-left: 2px solid var(--color-accent);
+  background: rgba(6, 182, 212, 0.03);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+[data-theme='futura'] .prose a {
+  color: var(--color-accent);
+  text-decoration-color: rgba(6, 182, 212, 0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+[data-theme='futura'] .prose a:hover {
+  text-decoration-color: var(--color-accent);
+}
+
+/* ─── Post card: clean hover line ─── */
+
+[data-theme='futura'] .post-card__read-more {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* ─── Project links ─── */
+
+[data-theme='futura'] .project-card__link {
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+/* ─── Subtle background grid (detail) ─── */
+
+[data-theme='futura'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+}

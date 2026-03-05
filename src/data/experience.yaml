@@ -1,0 +1,34 @@
+- id: nebula-labs
+  role: Frontend Developer
+  company: Nebula Labs
+  url: https://nebulalabs.dev
+  startDate: 2024-06-01
+  description: Leading frontend development for a design-tools startup, building a collaborative whiteboard product used by 10K+ designers.
+  highlights:
+    - Architected a component library (50+ components) that reduced UI development time by 40%
+    - Improved Lighthouse performance score from 62 to 97 by implementing code splitting and image optimization
+    - Introduced automated visual regression testing, catching 90% of UI bugs before production
+    - Mentored 2 junior developers through structured pair programming sessions
+
+- id: datacraft-intern
+  role: Web Developer Intern
+  company: DataCraft Solutions
+  url: https://datacraft.io
+  startDate: 2023-09-01
+  endDate: 2024-05-15
+  description: Built internal dashboards and data visualization tools for a data analytics consultancy.
+  highlights:
+    - Developed 3 interactive dashboards using D3.js that helped clients reduce report generation time by 60%
+    - Migrated legacy jQuery codebase to modern React, improving maintainability and developer experience
+    - Created an automated data pipeline that processed 50K+ records daily with zero manual intervention
+
+- id: freelance
+  role: Freelance Developer
+  company: Self-employed
+  startDate: 2022-06-01
+  endDate: 2023-08-31
+  description: Designed and built websites and web applications for small businesses and startups.
+  highlights:
+    - Delivered 8 client projects on time, maintaining a 5-star rating across all engagements
+    - Built an e-commerce storefront that processed €120K in sales during its first 6 months
+    - Developed a booking system for a local gym that increased online reservations by 200%

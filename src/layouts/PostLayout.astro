@@ -1,0 +1,185 @@
+---
+/**
+ * PostLayout — Layout for individual blog post pages.
+ *
+ * Extends BaseLayout and adds:
+ * - Article metadata (date, tags)
+ * - Breadcrumb navigation
+ * - Prose styling for Markdown content
+ */
+import BaseLayout from './BaseLayout.astro';
+import Tag from '../components/ui/Tag.astro';
+import { formatDate } from '../utils/formatDate';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+  cover?: string;
+}
+
+const { title, description, pubDate, updatedDate, tags = [], cover } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} ogImage={cover}>
+  <article class="post">
+    <div class="post__container">
+      {/* ─── Breadcrumb ─── */}
+      <nav class="post__breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="/posts">Posts</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{title}</span>
+      </nav>
+
+      {/* ─── Header ─── */}
+      <header class="post__header">
+        <div class="post__meta">
+          <time datetime={pubDate.toISOString()}>
+            {formatDate(pubDate, 'full')}
+          </time>
+          {
+            updatedDate && (
+              <span class="post__updated">(Updated: {formatDate(updatedDate, 'full')})</span>
+            )
+          }
+        </div>
+
+        <h1 class="post__title">{title}</h1>
+        <p class="post__description">{description}</p>
+
+        {
+          tags.length > 0 && (
+            <div class="post__tags">
+              {tags.map((tag) => (
+                <Tag>{tag}</Tag>
+              ))}
+            </div>
+          )
+        }
+      </header>
+
+      {/* ─── Content (Markdown renders into the slot) ─── */}
+      <div class="prose">
+        <slot />
+      </div>
+
+      {/* ─── Back link ─── */}
+      <footer class="post__footer">
+        <a href="/posts" class="post__back"> ← Back to all posts </a>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    padding-block: var(--space-xl) var(--space-2xl);
+  }
+
+  .post__container {
+    max-width: var(--content-width);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+  }
+
+  /* Breadcrumb */
+  .post__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+  }
+
+  .post__breadcrumb a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .post__breadcrumb a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .post__breadcrumb [aria-current] {
+    color: var(--color-text);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Header */
+  .post__header {
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .post__updated {
+    font-style: italic;
+  }
+
+  .post__title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .post__title {
+      font-size: var(--font-size-4xl);
+    }
+  }
+
+  .post__description {
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-normal);
+  }
+
+  .post__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin-top: var(--space-sm);
+  }
+
+  /* Footer */
+  .post__footer {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .post__back {
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .post__back:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>
